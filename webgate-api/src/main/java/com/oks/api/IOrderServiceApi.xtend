@@ -4,4 +4,6 @@ interface IOrderServiceApi {
 	
 	def String select()
 	
+	def String refuse ()
+	
 }
