@@ -11,7 +11,7 @@ import org.apache.commons.lang3.builder.ToStringStyle
 @Accessors class Permission {
 	
 	Integer permissionId
-	
+
 	String permissionName
 	
 	Date createTime
