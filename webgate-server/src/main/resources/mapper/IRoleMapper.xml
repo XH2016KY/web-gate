@@ -5,10 +5,5 @@
 <mapper namespace="com.oks.mapper.IRoleMapper">
 
 
-<!--    <select id="findByName" resultType="com.oks.pojo.Role">
-   
-        
-   </select> -->
-
 </mapper>
 	

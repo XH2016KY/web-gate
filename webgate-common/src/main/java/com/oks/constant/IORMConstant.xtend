@@ -22,6 +22,22 @@ interface IORMConstant {
 		
 	}
 	
+	/**
+	 *  权限表常量
+	 */
+	 interface IPermissionConstant{
+	 	
+	 	val static COLUMN_PERMISSION_ID = "permission_id"
+	    val static COLUMN_PERMISSION_NAME = "permission_name"
+	    val static COLUMN_PERMISSION_CREATE_TIME = "permission_create_time"
+	    val static COLUMN_PERMISSION_UPDATE_TIME ="permission_update_time"
+	    
+	    val static PROPERTY_PERMISSION_ID = "permissionId"
+	    val static PROPERTY_PERMISSION_NAME = "permissionName"
+	    val static PROPERTY_PERMISSION_CREATE_TIME = "createTime"
+	    val static PROPERTY_PERMISSION_UPDATE_TIME = "updateTime"
+	 }
+	
 	
 	
 }

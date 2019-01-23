@@ -13,16 +13,18 @@ class RoleMapperTest {
 	
 	ApplicationContext  applicationContext
 	
+	IRoleMapper roleMapper
+	
 	
 	@Before
 	def void  init(){
 		applicationContext = new AnnotationConfigApplicationContext(RootConfig)
+		roleMapper = applicationContext.getBean(IRoleMapper)
 	}
 	
 	@Test
     def void testfindByName() {
-    	val bean = applicationContext.getBean(IRoleMapper)
-	    val findByName = bean.findByName("vip")
+	    val findByName = roleMapper.findByName("vip")
 	    var sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
 	    println(sd.format(findByName.createTime))
 	    println(sd.format(findByName.updateTime))
