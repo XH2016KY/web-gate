@@ -27,7 +27,7 @@ interface IORMConstant {
 	 */
 	 interface IPermissionConstant{
 	 	
-	 	val static COLUMN_PERMISSION_ID = "permission_id"
+	    val static COLUMN_PERMISSION_ID = "permission_id"
 	    val static COLUMN_PERMISSION_NAME = "permission_name"
 	    val static COLUMN_PERMISSION_CREATE_TIME = "permission_create_time"
 	    val static COLUMN_PERMISSION_UPDATE_TIME ="permission_update_time"
@@ -43,7 +43,7 @@ interface IORMConstant {
 	 */
 	interface IUserConstant{
 		
-        val static COLUMN_USER_ID = "user_ID"
+                val static COLUMN_USER_ID = "user_ID"
 		val static COLUMN_USERNAME = "user_name"
 		val static COLUMN_PASSWORD = "user_password"
 		val static COLUMN_USER_STATUS = "user_status"
@@ -71,13 +71,7 @@ interface IORMConstant {
 		val static PROPERTY_USER_SEX = "userSex"
 		val static PROPERTY_USER_AGE = "userAge"
 		val static PROPERTY_USER_LOG = "log"
-		val static PROPERTY_USER_ADDRESS = "address"
-		
-		
-		
-		
-		
-		
+		val static PROPERTY_USER_ADDRESS = "address"	
 		
 	}
 	
