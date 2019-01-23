@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding = "UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/task
+   		http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://code.alibabatech.com/schema/dubbo        
+		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <context:property-placeholder location="classpath:jdbc.properties" />
+    <!-- shiroFilter -->
+    <bean class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" id="shiroFilter">
+            <!-- 配置安全管理 -->
+            <property name="securityManager" ref="securityManager"/>
+          <!--   配置登陆路径 -->
+            <property name="loginUrl" value="login.html"/>    
+           <!--  验证不通过路径 -->
+            <property name="unauthorizedUrl" value="403.html"/>
+            <!-- 过滤器链 -->
+            <property name="filterChainDefinitions">
+                 <value>
+                      /login.html = anon
+                      /Login = anon
+                      /* = authc    
+                 </value>   
+            </property>
+    </bean>
+    <!-- 自动装配SecurityManager -->
+    <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
+           <!--  用户Realm交与管理 -->
+            <property name="realm" ref="userRealm"/>   
+    </bean>
+    <!-- 注入自定义的Realm -->
+    <bean class="com.oks.realm.UserRealm" id="userRealm">
+         <!--    加密适配器 -->
+            <property name="credentialsMatcher"  ref="credentialMatcher"/>
+    </bean>
+    <!-- 加密工具 -->
+    <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher" id="credentialMatcher">
+          <!--   加密算法 -->
+            <property name="hashAlgorithmName" value="md5"/>
+           <!--  加密次数 -->
+            <property name="hashIterations"  value="1"/>                                      
+    </bean>
+   <!--  注解权限 -->
+    <aop:config proxy-target-class="true"/>
+	    <bean class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+	                   <property name="securityManager" ref="securityManager" />
+	    </bean>
+	  
+</beans>

@@ -91,6 +91,7 @@ class DaoConfig {
 		var packageSerchPath = mapperPath;
 		sqlSessionFactoryBean.setMapperLocations(pathMatchingResourcePatternResolver.getResources(packageSerchPath));
 		sqlSessionFactoryBean.setDataSource(dataSource());
+		//sqlSessionFactoryBean.setDataSource(slave());
 		sqlSessionFactoryBean.setTypeAliasesPackage(typeAliasPath);
 		return sqlSessionFactoryBean;
 

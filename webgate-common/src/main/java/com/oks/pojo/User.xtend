@@ -3,8 +3,9 @@ package com.oks.pojo
 import java.util.Date
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder
 import org.apache.commons.lang3.builder.ToStringStyle
+import org.eclipse.xtend.lib.annotations.Accessors
 
-class User {
+@Accessors class User {
 	
 	String userId
 	

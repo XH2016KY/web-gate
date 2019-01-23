@@ -11,7 +11,10 @@ import org.springframework.context.annotation.ComponentScan.Filter
 import org.springframework.context.annotation.FilterType
 import org.springframework.stereotype.Controller
 import org.aspectj.lang.annotation.Aspect
+import org.springframework.context.annotation.ImportResource
+import org.springframework.context.annotation.Bean
 
+@Deprecated
 @ComponentScan(value = "com.oks.*",includeFilters=#[
 	@Filter(type = FilterType.ANNOTATION,classes=#[Controller,Aspect])
 ],useDefaultFilters=false)
@@ -37,7 +40,8 @@ class WebConfig implements WebMvcConfigurer{
 	 *  视图解析
 	 */
 	override configureViewResolvers(ViewResolverRegistry registry) {
-		registry.jsp("WEB-INF/views",".jsp")
-	}
+		registry.jsp("WEB-INF/views/",".jsp")
 	
+	}
+
 }

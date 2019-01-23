@@ -14,18 +14,21 @@ import org.apache.shiro.realm.AuthorizingRealm
 import org.apache.shiro.subject.PrincipalCollection
 import org.apache.shiro.util.ByteSource
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Component
+import org.apache.shiro.crypto.hash.Md5Hash
 
 /** 
  *   认证 授权
  */
-class JdbcRealm extends AuthorizingRealm{
+ @Component
+class UserRealm extends AuthorizingRealm{
 	
-	val static Logger log = LogManager.getLogger(JdbcRealm)
+	val static Logger log = LogManager.getLogger(UserRealm)
 	
-	@Autowired
+	//@Autowired
 	IRoleMapper roleMapper
 	
-	@Autowired
+	//@Autowired
 	IPermissionMapper permissionMapper
 	
 	@Autowired
@@ -60,12 +63,13 @@ class JdbcRealm extends AuthorizingRealm{
 	override protected doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// 1 .从主体传过来认证的信息中,获取用户名
 		var username = (token.principal) as String
-		
+		log.info("User --->{}",username)
 		// 2 .通过用户名到数据库中获取凭证
-		var password = getPasswordByUserName(name)
+		var password = getPasswordByUserName(username)
 		
 		// 3 .判断凭证
 		if(password === null){
+			log.info("password->{}",password)
 			return null
 		}
 		// 4 .认证不为空,加密返回认证信息
@@ -104,6 +108,11 @@ class JdbcRealm extends AuthorizingRealm{
 		]
 		log.info("用户拥有角色->{}",roles)
 		roles
+	}
+	
+	def static void main(String[] args) {
+		var md5Hash = new Md5Hash("123456","jdk");
+		System.out.println(md5Hash.toString());
 	}
 	
 }
