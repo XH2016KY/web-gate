@@ -89,7 +89,7 @@ class UserRealm extends AuthorizingRealm{
 	 *  通过用户名查询到权限集合
 	 */
 	 def getPermissions(String name){
-	 	
+	 	log.info("从数据库中获取权限数据")
         val permissions = new HashSet
         userMapper.selectPermissionsByUserName(name).forEach[one|
         	permissions.add(one)
@@ -103,6 +103,7 @@ class UserRealm extends AuthorizingRealm{
 	  */
 	def getRoles(String name){
 		val roles = new HashSet
+		log.info("从数据库中获取角色数据")
 		userMapper.selectRolesByUserName(name).forEach[one|
 			roles.add(one)
 		]

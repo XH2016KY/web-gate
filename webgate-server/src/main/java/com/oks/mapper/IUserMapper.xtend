@@ -74,11 +74,20 @@ interface IUserMapper {
           ")
 	def List<String> selectRolesByUserName(@Param("userName") String userName)
 	
-	
+	/**
+	 *  通过主体拿到凭证
+	 */
 	@Slave
 	@Select(
 		value = "select user_password from tb_user where user_name = #{principal}"
 	)
 	def String getResultByPrincipal(@Param("principal")String principal)
+	
+	/**
+	 *  通过用户名修改其拥有的角色
+	 */
+	def boolean updateRolesByUserName(@Param("userName") String userName)
+	
+	
 
 }

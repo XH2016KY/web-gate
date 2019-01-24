@@ -29,9 +29,9 @@
 	<context:component-scan
 		base-package="com.oks.config" />
 	<!-- 处理器 映射器 适配器 -->
-    <bean class="com.oks.dao.DaoConfig"/>
-    <context:component-scan base-package="com.oks.realm"/>
 	<mvc:annotation-driven />
+    <bean class="com.oks.config.RootConfig"/>
+    <context:component-scan base-package="com.oks.realm"/>
 	<!-- 静态资源的过滤 -->
 	<mvc:default-servlet-handler />
 	<mvc:resources location="/resource/"

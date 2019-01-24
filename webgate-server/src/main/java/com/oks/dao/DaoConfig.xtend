@@ -3,7 +3,6 @@ package com.oks.dao
 import com.alibaba.druid.pool.DruidDataSource
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component
-import org.springframework.context.annotation.PropertySource
 import org.springframework.beans.factory.annotation.Value
 import com.oks.dao.split.DynamicDataSource
 import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy
@@ -15,6 +14,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver
 import org.mybatis.spring.annotation.MapperScan
 import org.springframework.transaction.annotation.EnableTransactionManagement
 import org.springframework.jdbc.datasource.DataSourceTransactionManager
+import org.springframework.context.annotation.PropertySource
 
 @Configuration
 @Component

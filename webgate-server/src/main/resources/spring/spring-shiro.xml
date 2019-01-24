@@ -34,6 +34,7 @@
                  <value>
                       /login.html = anon
                       /Login = anon
+                      /ggg = anon
                       /* = authc    
                  </value>   
             </property>
@@ -42,11 +43,13 @@
     <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
            <!--  用户Realm交与管理 -->
             <property name="realm" ref="userRealm"/>   
+            <property name="sessionManager" ref="sessionManager"/>
     </bean>
     <!-- 注入自定义的Realm -->
     <bean class="com.oks.realm.UserRealm" id="userRealm">
          <!--    加密适配器 -->
             <property name="credentialsMatcher"  ref="credentialMatcher"/>
+            <property name="cacheManager" ref="cacheManager"/>
     </bean>
     <!-- 加密工具 -->
     <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher" id="credentialMatcher">
@@ -55,11 +58,17 @@
            <!--  加密次数 -->
             <property name="hashIterations"  value="1"/>                                      
     </bean>
-   <!--  注解权限 -->
-    <aop:config proxy-target-class="true"/>
+   <!-- 注解权限 -->
+  <!-- <aop:config proxy-target-class="true"/> -->
+    <aop:aspectj-autoproxy/>
 	    <bean class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 	    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 	                   <property name="securityManager" ref="securityManager" />
 	    </bean>
-	  
+	<bean class="com.oks.cache.RedisCacheManager" id="cacheManager"/>
+	<!-- <bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager" id="sessionManager"> -->
+	<bean class="com.oks.session.CustomSessionManager" id="sessionManager">
+	               <property name="sessionDAO"  ref="redisSessionDao"/>
+	</bean>
+	<bean class="com.oks.session.RedisSessionDao" id="redisSessionDao"/>
 </beans>

@@ -31,14 +31,8 @@ class UserMapperTest {
     
     @Test
     def void test1findById() {
-	    var user = userMapper.selectPermissionsByUserName("oks")
-//	    val a = new HashSet<String>
-//	    user.forEach[one|
-//	    	a.add(one.permissionName)
-//	    ]
+	    var user = userMapper.selectPermissionsByUserName("op")
 	    println(user)
-	  
-	 
     }
     
     

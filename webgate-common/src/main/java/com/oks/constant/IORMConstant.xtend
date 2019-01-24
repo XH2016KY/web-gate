@@ -39,11 +39,11 @@ interface IORMConstant {
 	 }
 	
 	/**
-	 *  用户常量
+	 *  用户表常量
 	 */
 	interface IUserConstant{
 		
-                val static COLUMN_USER_ID = "user_ID"
+        val static COLUMN_USER_ID = "user_ID"
 		val static COLUMN_USERNAME = "user_name"
 		val static COLUMN_PASSWORD = "user_password"
 		val static COLUMN_USER_STATUS = "user_status"
@@ -56,8 +56,6 @@ interface IORMConstant {
 		val static COLUMN_USER_AGE = "user_age"
 		val static COLUMN_USER_LOG = "user_log"
 		val static COLUMN_USER_ADDRESS = "user_address"
-		
-		
 		
 		val static PROPERTY_USER_ID = "userId"
 		val static PROPERTY_USERNAME = "username"

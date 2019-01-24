@@ -15,7 +15,7 @@ import org.aspectj.lang.annotation.Aspect
 				Service,Component,Aspect])
 ])
 @EnableAspectJAutoProxy
-@Import(DaoConfig)
+@Import(#[DaoConfig,RedisClusterConfig])
 class RootConfig {
 	
 	
