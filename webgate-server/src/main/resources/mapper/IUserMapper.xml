@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 空间是接口名 -->
+<mapper namespace="com.oks.mapper.IUserMapper">
+
+
+
+	<!-- <select id="getPermissionsByInfo"
+		resultType="string">
+			select permission_name from tb_permission where permission_id in
+				<foreach item="info" index="index" collection="list"
+					open="(" separator="," close=")">
+					#{info}
+				</foreach>
+	</select> -->
+</mapper>
+	

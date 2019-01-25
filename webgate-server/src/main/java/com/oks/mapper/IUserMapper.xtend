@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Param
 import org.apache.ibatis.annotations.Result
 import org.apache.ibatis.annotations.Results
 import org.apache.ibatis.annotations.Select
+import com.oks.pojo.UserRolePermissionInfo
+import com.oks.pojo.Permission
 
 @Mapper
 interface IUserMapper {
@@ -43,7 +45,7 @@ interface IUserMapper {
 	])
 	@Select(value="select * from tb_user where user_name = #{name}")
 	def User findByName(@Param("name") String name)
-
+    
 	/** 
 	 *  根据用户名 查询其拥有的权限
 	 */
@@ -57,6 +59,7 @@ interface IUserMapper {
                   LEFT JOIN tb_user u
                       on ur.user_id = u.user_id
               where u.user_name = #{userName};")
+	@Deprecated
 	def List<String> selectPermissionsByUserName(@Param("userName") String userName);
 
 	/**
@@ -72,6 +75,7 @@ interface IUserMapper {
          where u.user_name = #{userName};
 
           ")
+    @Deprecated
 	def List<String> selectRolesByUserName(@Param("userName") String userName)
 	
 	/**
@@ -83,11 +87,36 @@ interface IUserMapper {
 	)
 	def String getResultByPrincipal(@Param("principal")String principal)
 	
+	
 	/**
-	 *  通过用户名修改其拥有的角色
+	 *  通过用户名拿到角色权限信息
 	 */
-	def boolean updateRolesByUserName(@Param("userName") String userName)
 	
+	@Slave
+	@Results(
+		id="base_info",
+	    value = #[
+	    	@Result(column = "user_id",property="userId"),
+	    	@Result(column = "role_info",property="roleInfo"),
+	    	@Result(column = "permission_info",property="permissionInfo")
+	    ]
+	)
+	@Select(value="
+         select role_info,permission_info from tb_user_role_permission_info t1
+                   LEFT JOIN tb_user t2
+                          on t1.user_id = t2.user_id
+                   where user_name = #{principal}
+    ")
+	def UserRolePermissionInfo getRolePermissionInfoByPrincipal(@Param("principal")String principal)
 	
+	@Slave
+	@Select(
+	"<script>"+
+	"select permission_name from tb_permission where permission_id in"+
+	"<foreach item=\"info\" index=\"index\" collection=\"list\"
+				open=\"(\" separator=\",\" close=\")\">#{info}</foreach>"+
+	"</script>"
+     )
+	def List<String> getPermissionsByInfo(@Param("list")List<Integer> info);
 
 }
