@@ -75,7 +75,7 @@ interface IUserMapper {
          where u.user_name = #{userName};
 
           ")
-    @Deprecated
+        @Deprecated
 	def List<String> selectRolesByUserName(@Param("userName") String userName)
 	
 	/**
@@ -106,7 +106,7 @@ interface IUserMapper {
                    LEFT JOIN tb_user t2
                           on t1.user_id = t2.user_id
                    where user_name = #{principal}
-    ")
+        ")
 	def UserRolePermissionInfo getRolePermissionInfoByPrincipal(@Param("principal")String principal)
 	
 	@Slave
@@ -114,9 +114,9 @@ interface IUserMapper {
 	"<script>"+
 	"select permission_name from tb_permission where permission_id in"+
 	"<foreach item=\"info\" index=\"index\" collection=\"list\"
-				open=\"(\" separator=\",\" close=\")\">#{info}</foreach>"+
+		open=\"(\" separator=\",\" close=\")\">#{info}</foreach>"+
 	"</script>"
-     )
+         )
 	def List<String> getPermissionsByInfo(@Param("list")List<Integer> info);
 
 }
