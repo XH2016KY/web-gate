@@ -33,8 +33,13 @@ class RedisTest {
     
      @Test
     def void test2(){
-    	var v = jedis.set("shiro","shiroFilter")
+    	var v = jedis.get("shiro")
     	println(v)
     }
-	
+    //osk-session058be6db-9d21-4416-b1c4-bee104e98058
+	 @Test
+    def void test3(){
+    	var v = jedis.get("osk-session058be6db-9d21-4416-b1c4-bee104e98058")
+    	println("对象"+v)
+    }
 }

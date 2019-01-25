@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.ResponseBody
 import redis.clients.jedis.JedisCluster
+import javax.servlet.http.HttpServlet
 
 @Controller
 class TestController {
@@ -52,8 +53,19 @@ class TestController {
 	@GetMapping(value="ggg")
 	@ResponseBody
 	def lol(){
+		
 		var a = SecurityUtils.subject
-		a.principal
+		a.principal as String
+        throw new IllegalArgumentException("hhhhhhh")
+		
+	}
+	
+	@GetMapping(value="out",produces="application/json;charset=utf-8")
+	@ResponseBody
+	def lol12(){
+		var a = SecurityUtils.subject
+		a.logout
+		"已退出"
 	}
 		
 	

@@ -10,6 +10,7 @@ import java.util.HashSet
 import com.oks.pojo.Permission
 import java.util.ArrayList
 import java.util.concurrent.CopyOnWriteArrayList
+import org.apache.shiro.crypto.hash.Md5Hash
 
 class UserMapperTest {
 	
@@ -59,6 +60,14 @@ class UserMapperTest {
 	    var result = userMapper.getPermissionsByInfo(RolePermissionToList(pwd.permissionInfo))
         println('''权限为:«result»''')
 	    
+    }
+    
+    @Test
+    def void test4updateCredentialsByPrincipal(){
+    	var md5Hash = new Md5Hash("qwerty","jdk");
+    	
+    	var bool = userMapper.updateCredentialsByPrincipal(md5Hash.toString,"oks")
+    	println(bool)
     }
     
     def RolePermissionToList(String info){

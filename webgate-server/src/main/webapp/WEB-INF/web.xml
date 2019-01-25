@@ -27,6 +27,25 @@
 		<filter-name>shiroFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<!-- 配置myFilter -->
+	<filter>
+		<filter-name>myFilter</filter-name>
+		<filter-class>com.oks.filter.MyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>myFilter</filter-name>
+		<url-pattern>/ggg</url-pattern>
+	</filter-mapping>
+	<!-- 配置secondFilter -->
+	<filter>
+		<filter-name>secondFilter</filter-name>
+		<filter-class>com.oks.filter.SecondFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>secondFilter</filter-name>
+		<url-pattern>/ggg</url-pattern>
+	</filter-mapping>
+	
 	<!-- 配置Spring-MVC -->
 	<servlet>
 		<servlet-name>spring</servlet-name>

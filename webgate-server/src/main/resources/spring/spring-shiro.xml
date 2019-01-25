@@ -35,6 +35,7 @@
                       /login.html = anon
                       /Login = anon
                       /ggg = anon
+                      /out = anon
                       /* = authc    
                  </value>   
             </property>

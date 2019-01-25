@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
@@ -21,27 +20,14 @@
    		http://www.springframework.org/schema/task/spring-task-4.0.xsd
 		http://code.alibabatech.com/schema/dubbo        
 		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-
-	<context:annotation-config />
-	<!-- 扫描 @Controller -->
-	<!-- 自动装配@Autowared -->
-	<context:component-scan
-		base-package="com.oks.web.*" />
-	<context:component-scan
-		base-package="com.oks.config" />
-	<!-- 处理器 映射器 适配器 -->
-	<mvc:annotation-driven />
-    <bean class="com.oks.config.RootConfig"/>
-    <context:component-scan base-package="com.oks.realm"/>
-	<!-- 静态资源的过滤 -->
-	<!-- <mvc:interceptors/> -->
-	<mvc:default-servlet-handler />
-	<mvc:resources location="/resource/"
-		mapping="/resource/**" />
-	<!-- 视图解析器jsp -->
-	<bean id="jspViewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+		
+	<!-- dubbo服务消费者 -->
+	<!-- 1.名称 -->
+	<!-- <dubbo:application name="webgate-server" />
+	2.设置注册中心
+	<dubbo:registry address="192.168.200.133:2181,192.168.200.134:2181,192.168.200.135:2181"
+		protocol="zookeeper" />
+	3.调用服务api接口
+	<dubbo:reference interface="com.shiro.api.UserService" id="userService"/> -->
+		
 </beans>

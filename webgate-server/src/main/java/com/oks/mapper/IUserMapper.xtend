@@ -1,16 +1,17 @@
 package com.oks.mapper
 
+import com.oks.annotation.Master
 import com.oks.annotation.Slave
 import com.oks.constant.IORMConstant
 import com.oks.pojo.User
+import com.oks.pojo.UserRolePermissionInfo
 import java.util.List
 import org.apache.ibatis.annotations.Mapper
 import org.apache.ibatis.annotations.Param
 import org.apache.ibatis.annotations.Result
 import org.apache.ibatis.annotations.Results
 import org.apache.ibatis.annotations.Select
-import com.oks.pojo.UserRolePermissionInfo
-import com.oks.pojo.Permission
+import org.apache.ibatis.annotations.Update
 
 @Mapper
 interface IUserMapper {
@@ -117,6 +118,11 @@ interface IUserMapper {
 		open=\"(\" separator=\",\" close=\")\">#{info}</foreach>"+
 	"</script>"
          )
-	def List<String> getPermissionsByInfo(@Param("list")List<Integer> info);
-
+	def List<String> getPermissionsByInfo(@Param("list")List<Integer> info)
+	
+	
+	@Master
+	@Update(value="update tb_user set user_password = #{credentials} where user_name = #{principal}")
+	def boolean updateCredentialsByPrincipal(@Param("credentials")String credentials,
+		@Param("principal")String principal)
 }

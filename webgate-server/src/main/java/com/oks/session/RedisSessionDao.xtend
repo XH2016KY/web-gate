@@ -51,7 +51,12 @@ class RedisSessionDao extends AbstractSessionDAO {
 		}
 		var key = getKey(sessionId.toString)
 		var value = jedisUtil.get(key)
-		SerializationUtils.deserialize(value) as Session
+		// SerializationUtils.deserialize(value) as Session
+		// TODO 处理绘会话过期
+		if(value !== null){
+			return SerializationUtils.deserialize(value) as Session
+		}
+		
 	}
 
 	override delete(Session session) {

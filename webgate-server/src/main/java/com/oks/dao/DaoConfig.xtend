@@ -18,7 +18,7 @@ import org.springframework.context.annotation.PropertySource
 
 @Configuration
 @Component
-@PropertySource("classpath:jdbc.properties")
+@PropertySource("classpath:application.properties")
 @MapperScan(#["com.oks.mapper"])
 @EnableTransactionManagement
 class DaoConfig {
