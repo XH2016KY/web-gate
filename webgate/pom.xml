@@ -14,6 +14,7 @@
 	<properties>
 		<!-- spring版本 -->
 		<springframework.version>5.0.5.RELEASE</springframework.version>
+	<!-- 	<springframework.version>4.3.10.RELEASE</springframework.version> -->
 		<!-- mybatis版本 -->
 		<mybatis.version>3.4.2</mybatis.version>
 		<!-- mybatis-spring版本 -->
